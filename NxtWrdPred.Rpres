@@ -1,0 +1,56 @@
+NxtWrdPred
+========================================================
+author: NJL
+date: 03-JUl-2021
+autosize: true
+transition: fade
+
+View of Web Page
+========================================================
+
+![Alt text](webpage.png)
+
+
+Information for User
+========================================================
+<small>
+The user on opening the web page starts by clicking in the text box, which is large enough to hold long writings.
+
+The user can type continuously without much of pausing, the prediction happens simultaneously.
+
+The user can then copy paste the text into the document where it is intended. For example, a reply to an email, or a blog, or an essay writing, etc.
+
+This app can also be viewed as a prompter, prompting the next best word to use. It also prompts for a end of sentence symbol, like . or : or ; etc. This prompt appears as <EOS> in the prediction list.
+
+The three best predictions appear below the text box.
+</small>
+
+Internals of the App(1/2)
+========================================================
+<small>
+The model used for the App is SBO (Stupid Back Off) Algorithms.
+
+The training inputs are the three files (blogs, news and twitter) provided as input for this project.
+
+The size of the files are too large for the memory of my computer. So, only 10% of the training data was used which accounts to a file size of 30MB.
+
+One model was built with 100% of training data (~300MB), with 3-gram and dictionary with 75% coverage. The model occupied more space and was time consuming, moreover the accuracy improvement was not large enough compared to the performance degradation. Hence, it was dropped.
+
+Testing was also done with 25% of training data, but the accuracy improvement was not considerable.
+</small>
+
+Internals of the App(2/2)
+========================================================
+<small>
+Tests were done with 10% sampling of training data and N-grams varying from 2 to 5, with the dictionary coverage of 50%, 75% and 100% combinations.
+
+Accuracy with dictionary coverage of 50% was way below 75% and was dropped.
+Accuracy improvement with 100% dictionary coverage was not much, hence 75% was chosen.
+
+With respect to N-grams, the size of model with N4 and N5 were large compared to N3 and N2. N3 gave the best accuracy, but in most of the cases N2 was pretty close. N3 gave 20% better accuracy on an average under different test conditions (using different text test inputs), but occupied 100 times more memory (abosulte number is low).
+
+The model chosen for the App is developed using 10% of Training Data, 75% Dictionary coverage, and 3-grams </small>
+
+Models performance table
+========================================================
+![Alt text](output.png)
