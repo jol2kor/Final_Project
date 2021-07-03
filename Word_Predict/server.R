@@ -1,0 +1,42 @@
+#
+# This is the server logic of a Shiny web application. You can run the
+# application by clicking 'Run App' above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+library(shiny)
+library(sbo)
+
+
+
+p <- readRDS("new_N3_table.RDS")
+p <- sbo_predictor(p)
+
+# Define server logic required to draw a histogram
+shinyServer(function(input, output, session) {
+    
+    
+    inp_txt <- reactive({
+        param <- input$text
+        param
+    })
+    
+    
+    output$table1 <- renderTable({
+        sent <- inp_txt()
+        x <- predict(p, sent)
+        df <- data.frame(as.integer(c(1,2,3)))
+        df[,2] <- c(x[1], x[2], x[3])
+        names(df) <- c("Rank", "Predicted Word")
+        df
+    })
+   session$onSessionEnded(function() {
+      stopApp()
+  })
+})
+
+
+
