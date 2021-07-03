@@ -54,3 +54,12 @@ The model chosen for the App is developed using 10% of Training Data, 75% Dictio
 Models performance table
 ========================================================
 ![Alt text](output.png)
+
+Reference and Links
+========================================================
+<small>
+The web page is at  https://jol2kor.shinyapps.io/NxtWrdPred/
+
+The github repository link @ https://github.com/jol2kor/Final_Project
+
+SBO related document @ https://cran.r-project.org/web/packages/sbo/vignettes/sbo.html
